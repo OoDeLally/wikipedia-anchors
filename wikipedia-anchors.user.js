@@ -1,8 +1,10 @@
 // ==UserScript==
 // @name         Wikipedia Anchors
 // @version      0.1
+// @namespace    https://github.com/OoDeLally/wikipedia-anchors
 // @description  Add an anchored link to titles on Wikipedia articles
 // @author       Pascal Heitz
+// @license      MIT
 // @include        http*://*.wikipedia.org/*
 // @include        http*://wikipedia.org/*
 // @grant        none
