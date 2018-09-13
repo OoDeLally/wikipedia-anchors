@@ -1,2 +1,5 @@
 # wikipedia-anchors
-Tampermonkey userscript to add an anchored link to titles on Wikipedia articles
+
+Userscript to add an anchored link to titles on Wikipedia articles.
+
+Tested with Tampermonkey and Greasemonkey.
