@@ -50,35 +50,33 @@ function insertBeforeLastIfPossible(containerNode, childNode) {
 }
 
 
-(function() {
-    'use strict';
-
-    var headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    for (var header of headers) {
-        var headlineSpan = header.querySelectorAll('span.mw-headline')[0];
-        if (!headlineSpan) {
-            continue;
-        }
-        var headlineId = headlineSpan.id;
-        if (!headlineId) {
-            continue;
-        }
-
-
-        var anchoredLink = createLink(document.location.href.match(/(^[^#]*)/)[0] + "#" + headlineId);
-
-
-        var editsectionSpan = header.querySelectorAll('span.mw-editsection')[0];
-        if (editsectionSpan) {
-            insertBeforeLastIfPossible(editsectionSpan, createDivider());
-            insertBeforeLastIfPossible(editsectionSpan, anchoredLink);
-        } else {
-            // The editsection doesnt exist, we need to create it
-            editsectionSpan = createEditSection();
-            header.appendChild(editsectionSpan);
-            insertBeforeLastIfPossible(editsectionSpan, anchoredLink);
-        }
-
+function addLinkToHeader(header) {
+    var headlineSpan = header.querySelectorAll('span.mw-headline')[0];
+    if (!headlineSpan) {
+        return;
+    }
+    var headlineId = headlineSpan.id;
+    if (!headlineId) {
+        return;
     }
 
+    var anchoredLink = createLink(document.location.href.match(/(^[^#]*)/)[0] + "#" + headlineId);
+
+    var editsectionSpan = header.querySelectorAll('span.mw-editsection')[0];
+    if (editsectionSpan) {
+        insertBeforeLastIfPossible(editsectionSpan, createDivider());
+        insertBeforeLastIfPossible(editsectionSpan, anchoredLink);
+    } else {
+        // The editsection doesnt exist, we need to create it
+        editsectionSpan = createEditSection();
+        header.appendChild(editsectionSpan);
+        insertBeforeLastIfPossible(editsectionSpan, anchoredLink);
+    }
+}
+
+
+(function() {
+    'use strict';
+    var headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headers.forEach(addLinkToHeader);
 })();
